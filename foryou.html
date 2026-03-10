@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluto Universe 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f8f0ff; font-family: 'Poppins', sans-serif; color: #4a148c; overflow-x: hidden; }
+
+        /* LOCK SCREEN */
+        #lock-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #d1c4e9 0%, #f3e5f5 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 10000; transition: opacity 0.8s ease;
+        }
+
+        .planet-icon { font-size: 5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px #7b1fa2); }
+
+        #pass-input {
+            padding: 15px; border-radius: 30px; border: 2px solid #7b1fa2;
+            width: 280px; text-align: center; font-size: 1.1rem; outline: none;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        #unlock-btn {
+            margin-top: 20px; padding: 12px 40px; background: #7b1fa2;
+            color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        #main-content { display: none; opacity: 0; transition: opacity 1.5s ease; }
+
+        .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .heart { position: absolute; color: #ba68c8; opacity: 0.5; animation: float 6s infinite linear; }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px; text-align: center; }
+        .hero h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: #6a1b9a; line-height: 1.2; }
+        
+        #timer-container { background: white; padding: 20px; border-radius: 50px; border: 2px solid #e1bee7; margin: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        #timer { font-weight: 600; font-size: 1.4rem; color: #7b1fa2; }
+
+        .card { max-width: 500px; background: white; border-radius: 30px; padding: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin: 25px 0; border: 1px solid #e1bee7; }
+        .card img { width: 100%; border-radius: 20px; display: block; margin: 0 auto; }
+        .urdu-big { font-size: 1.8rem; font-weight: 700; margin: 15px 0; display: block; color: #6a1b9a; }
+
+        .video-wrapper { 
+            width: 100%; max-width: 450px; aspect-ratio: 16/9; 
+            border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: #000;
+        }
+
+        .declaration { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #7b1fa2; margin: 40px 0; animation: glow 2s infinite alternate; }
+        @keyframes glow { from { text-shadow: 0 0 5px #fff, 0 0 10px #e1bee7; } to { text-shadow: 0 0 20px #ba68c8, 0 0 30px #7b1fa2; } }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #7b1fa2, #ab47bc); color: white; padding: 20px 60px; font-size: 1.8rem;
+            border-radius: 100px; border: none; cursor: pointer; font-family: 'Dancing Script', cursive;
+            box-shadow: 0 10px 25px rgba(123, 31, 162, 0.4); transition: 0.3s;
+        }
+        .btn-yes:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <div id="lock-screen">
+        <div class="planet-icon">🌑</div>
+        <h2 style="font-family: 'Dancing Script', cursive; margin-bottom: 20px; color: #4a148c; font-size: 2.2rem;">Which planet should we be?</h2>
+        <input type="text" id="pass-input" placeholder="Hint: Our favorite planet">
+        <button id="unlock-btn" onclick="checkPass()">Unlock Our Universe</button>
+        <p id="error-msg" style="color: #d32f2f; display: none; margin-top: 15px;">Try again, Zainiiiii 💜</p>
+    </div>
+
+    <div id="main-content">
+        <div class="hearts" id="heartContainer"></div>
+
+        <section class="hero">
+            <h1>Hey, Zainiiiii...</h1>
+            <div id="timer-container">
+                <p style="font-size: 0.8rem; opacity: 0.7; letter-spacing: 1px;">SINCE MARCH 10, 7:41 AM</p>
+                <div id="timer">0h 0m 0s</div>
+            </div>
+            <p>Scroll down for our story. 👇</p>
+        </section>
+
+        <section>
+            <div class="card">
+                <img src="my confession.png" alt="My Confession">
+                <span class="urdu-big">Bahut muqadas waqt hay ye ✨</span>
+            </div>
+        </section>
+
+        <section>
+            <div class="card">
+                <img src="QUOTE.png" alt="The Quote">
+            </div>
+        </section>
+
+        <section>
+            <div class="card">
+                <img src="zainii confession.png" alt="Her Response">
+                <span class="urdu-big">وقت رک سا گیا 💜</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="margin-bottom: 25px;">Our Soundtrack 🎵</h2>
+            <div class="video-wrapper">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3gixnmepHSsyAuho34rprN?utm_source=generator" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section>
+            <div class="declaration">I love you Zainiiii</div>
+            <h1 style="font-family: 'Poppins', sans-serif; margin-bottom: 30px; font-size: 1.5rem; font-weight: 300;">Will you stay mine for 3 months for now????? / Anyways press this YES be mine </h1>
+            <button class="btn-yes" onclick="alert('💜 I love you more than words💜, Zainiiiii.💜')">YES 🫶</button>
+           
+        </section>
+    </div>
+
+    <script>
+        function checkPass() {
+            const input = document.getElementById('pass-input').value.toLowerCase().trim();
+            const lock = document.getElementById('lock-screen');
+            const main = document.getElementById('main-content');
+
+            if (input === 'pluto') {
+                lock.style.opacity = '0';
+                setTimeout(() => {
+                    lock.style.display = 'none';
+                    main.style.display = 'block';
+                    setTimeout(() => {
+                        main.style.opacity = '1';
+                        startHearts();
+                    }, 50);
+                }, 800);
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+
+        const startTime = new Date("March 10, 2026 07:41:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = now - startTime;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('timer').innerText = (d > 0 ? d + "d " : "") + h + "h " + m + "m " + s + "s";
+        }, 1000);
+
+        function startHearts() {
+            const container = document.getElementById('heartContainer');
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '💜';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
